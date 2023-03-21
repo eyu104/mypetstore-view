@@ -10,12 +10,7 @@
 
         <div id="Banner"  class="mp">
             <p>1312</p>
-            <!-- <c:if test="${sessionScope.loginAccount != null }">
 
-                    <c:if test="${sessionScope.loginAccount.bannerOption == true}">
-                        ${sessionScope.loginAccount.bannerName}
-                    </c:if>
-            </c:if> -->
 
         </div>
     </div>

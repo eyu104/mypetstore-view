@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import  Header  from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import Aside from "./components/Aside.vue";
 
 </script>
 
@@ -11,9 +12,13 @@ import Footer from './components/Footer.vue'
     <el-container>
        <el-header><Header /></el-header>
       <el-main>
+        <div style="display:flex">
+          <Aside/>
+        </div>
         <div class="main">
             <RouterView />
         </div>
+
       </el-main>
       <el-footer>
         <div class="footer">
