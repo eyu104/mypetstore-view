@@ -23,8 +23,6 @@ import LoginForm from "./views/LoginForm.vue";
         </el-footer>
       </el-container>
     </div>
-
-  
   
 </template>
 
