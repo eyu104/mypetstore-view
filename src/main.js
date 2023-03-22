@@ -8,6 +8,8 @@ import 'dayjs/locale/zh-cn'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'//国际化
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
+import LoginForm from "./assets/LoginForm.css";
+
 import 'element-plus/dist/index.css'
 // import './assets/main.css'
 
