@@ -11,6 +11,9 @@ const srcList = ref([[
 'https://ts1.cn.mm.bing.net/th/id/R-C.5a4502c9ae240005df8fdcd9456ca04e?rik=vGqGMuvvbmgsvQ&riu=http%3a%2f%2fimg.zcool.cn%2fcommunity%2f013dea5542b3660000019ae973cc39.jpg%401280w_1l_2o_100sh.jpg&ehk=TIHSFWtFyomJQEPrXchC8QthvMCcgoAAY3A4CsEx04Q%3d&risl=&pid=ImgRaw&r=0'
 ]])
 </script>
+
+
+<template>
 <main>
     <el-row :gutter="20">
       <el-col
@@ -54,7 +57,6 @@ const srcList = ref([[
       </el-col>
   </el-row>
   </main>
-<template>
     
 </template>
 
