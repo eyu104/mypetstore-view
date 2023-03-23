@@ -29,35 +29,11 @@ export default {
 }
 </script>
 
-<!--<script setup>-->
-<!--import { ref } from 'vue'-->
-<!--const imgList = ref([-->
-<!--  {id:0,idView: "src/assets/images/1.gif"},-->
-<!--  {id:1,idView: "src/assets/images/2.gif"},-->
-<!--  {id:2,idView: "src/assets/images/3.gif"},-->
-<!--  {id:3,idView: "src/assets/images/4.gif"},-->
-<!--  {id:4,idView: "src/assets/images/5.gif"}-->
-<!--])-->
-
-<!--// var btn = document.querySelector('.btn');-->
-<!--//-->
-<!--// btn.addEventListener('mouseover',(event)=>{-->
-<!--//   const x = (event.pageX - btn.offsetLeft)-->
-<!--//   const y = (event.pageY - btn.offsetTop)-->
-<!--//-->
-<!--//   btn.style.setProperty("&#45;&#45;xPos",x + "px")-->
-<!--//   btn.style.setProperty("&#45;&#45;yPos",y + "px")-->
-<!--// })-->
-
-<!--</script>-->
-
 <template>
-
-<!--<div style="background-image: url(../assets/images/background.gif);"></div>-->
-
+<main>
 <div style="width: 95vw;padding: 10px">
 
-  <div style="padding: 10px;height: 25vh;background-image: url('src/assets/images/background.gif');" >
+  <div style="padding: 10px;height: 33.5vh;background-image: url('src/assets/images/background.gif');" >
 
     <el-row :gutter="20">
 
@@ -77,14 +53,14 @@ export default {
         <div style="margin: 15px">
         <div style="margin: 10px 10px">
 
-          <div><el-text class="mx-1" style="font-size: 45px;color: white;">进入商店，</el-text></div>
-          <div><el-text class="mx-1" style="font-size: 45px;color: white;">选购心仪的宠物吧！</el-text></div>
+          <div><el-text class="mx-1" style="font-size: 40px;color: white;">进入商店，</el-text></div>
+          <div><el-text class="mx-1" style="font-size: 40px;color: white;">选购心仪的宠物吧！</el-text></div>
 
         </div>
 
         <div style="margin: 10px 10px">
 
-          <a href="#" class="btn"  style="display:block;" >
+          <a href="#" class="btn" >
             <b><span>从此开始</span></b>
           </a>
 
@@ -104,17 +80,18 @@ export default {
     </el-carousel>
 </div>
 </div>
-
+</main>
 </template>
 
 
 <style scoped>
 
 .btn{
+  display:flex;
   text-align:center;
   font-size: 30px;
-  width: 130px;
-  height: 40px;
+  width: 15vh;
+  height: 5vh;
   position: relative;
   padding: 20px 30px;
   font-weight: 500;
@@ -142,7 +119,7 @@ export default {
   transform: translate(-50%,-50%);
   width: 0px;
   height: 0px;
-  background-color: #000;
+  background-color: rgba(24, 118, 128, 0.8);
   border-radius: 50%;
   transition: width 0.7s,height 0.7s;
 }
