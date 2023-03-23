@@ -12,7 +12,7 @@ const handleSelect = (key, keyPath) => {
 <template>
     <div class="header">
         <el-affix :offset="0">
-            <div style="width: 95vw;">
+            <div style="width: 96vw;">
                 <el-menu
                 :default-active="activeIndex"
                 class="el-menu-demo"
@@ -53,7 +53,6 @@ const handleSelect = (key, keyPath) => {
                     <el-menu-item index="5-2">切换账号</el-menu-item>
                     <el-menu-item index="5-3">退出登录</el-menu-item>
                     </el-sub-menu>
-                    <span>R</span>
                 </div>
                 
                 

@@ -9,8 +9,6 @@
         </div>
 
         <div id="Banner"  class="mp">
-            <p>1312</p>
-
 
         </div>
     </div>
@@ -20,6 +18,6 @@
 .footer {
     width: 95vw;
     background-color: #545c64;
-    height: 84px;
+    height: 50px;
 }
 </style>
