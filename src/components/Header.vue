@@ -17,13 +17,16 @@ const handleSelect = (key, keyPath) => {
                 :default-active="activeIndex"
                 class="el-menu-demo"
                 mode="horizontal"
-                background-color="#545c64"
+                background-color="#14616B"
+
                 text-color="#fff"
                 active-text-color="#ffd04b"
                 @select="handleSelect"
+
+                router
             >
                 <div class="block1">
-                    <el-menu-item index="1">PetStore</el-menu-item>
+                    <el-menu-item index="home" ><b style="font-size: x-large">PetStore</b></el-menu-item>
                 </div>
                 
 
@@ -37,7 +40,7 @@ const handleSelect = (key, keyPath) => {
                 <div class="block3">
 
                 
-                    <el-menu-item index="3" >About</el-menu-item>
+                    <el-menu-item index="about" >About</el-menu-item>
                    
                 </div>
                 
@@ -51,7 +54,7 @@ const handleSelect = (key, keyPath) => {
                     <template #title>Account</template>
                     <el-menu-item index="5-1">个人信息</el-menu-item>
                     <el-menu-item index="5-2">切换账号</el-menu-item>
-                    <el-menu-item index="5-3">退出登录</el-menu-item>
+                    <el-menu-item index="login">退出登录</el-menu-item>
                     </el-sub-menu>
                 </div>
                 
@@ -73,6 +76,7 @@ const handleSelect = (key, keyPath) => {
 .header {
     display: flex;
     width: 100%;
+
 }
 
 .block1 {

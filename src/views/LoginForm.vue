@@ -1,5 +1,6 @@
 <template>
-  <div class="layout">
+
+  <div class="layout" style="height: 100vh">
     <el-tabs type="border-card">
       <el-tab-pane label="登录">
         <el-form
@@ -89,7 +90,9 @@
       </el-tab-pane>
     </el-tabs>
   </div>
+
 </template>
+
 <script>
 import { reactive, toRefs } from "@vue/reactivity";
 import {ElMessage} from 'element-plus';
@@ -106,6 +109,7 @@ export default {
       password: "",
       isAgree: 0,
     });
+
     const registerForm = reactive({
       rEmail: "",
       rPassword: "",
@@ -120,14 +124,13 @@ export default {
     function login() {//实现登陆的方法，后端在这里连接
       console.log(form);
 
-
-     request.post("/api/user/login",form).then(res =>{
+      request.post("/api/user/login",form).then(res =>{
         if (res.code=='0')
         {
           this.$message(
               {
                 type:"success",
-                message:"登陆成功"
+                message:"登录成功"
               }
           )
           router.push("/")//登陆成功后进行页面的跳转
