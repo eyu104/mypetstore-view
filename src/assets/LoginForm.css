@@ -43,5 +43,10 @@
     color: #ffd04b !important;
 }
 
+.el-input__inner{
+    color: #ffd04b;
+}
 
-
+.el-input__border{
+    color: #ffd04b;
+}
