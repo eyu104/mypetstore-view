@@ -9,13 +9,6 @@
         </div>
 
         <div id="Banner"  class="mp">
-            <p>1312</p>
-            <!-- <c:if test="${sessionScope.loginAccount != null }">
-
-                    <c:if test="${sessionScope.loginAccount.bannerOption == true}">
-                        ${sessionScope.loginAccount.bannerName}
-                    </c:if>
-            </c:if> -->
 
         </div>
     </div>
@@ -25,6 +18,6 @@
 .footer {
     width: 95vw;
     background-color: #545c64;
-    height: 84px;
+    height: 50px;
 }
 </style>

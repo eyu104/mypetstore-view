@@ -12,7 +12,7 @@ const handleSelect = (key, keyPath) => {
 <template>
     <div class="header">
         <el-affix :offset="0">
-            <div style="width: 95vw;">
+            <div style="width: 96vw;">
                 <el-menu
                 :default-active="activeIndex"
                 class="el-menu-demo"
@@ -22,49 +22,38 @@ const handleSelect = (key, keyPath) => {
                 active-text-color="#ffd04b"
                 @select="handleSelect"
             >
-                <!-- <div class="block1"> -->
-                    <el-menu-item index="1"><b>Pet</b>&nbspStore</el-menu-item>
-                <!-- </div> -->
+                <div class="block1">
+                    <el-menu-item index="1">PetStore</el-menu-item>
+                </div>
                 
 
                 <div class="block2">
 
                 </div>
 
-                <!-- <div class="block2-1"> -->
-                    <el-menu-item index="2" >
-                        Cart<el-icon><ShoppingCart /></el-icon>
-                    </el-menu-item>
-                <!-- </div> -->
-                <!-- <div class="block3"> -->
+                <div class="block2-1">
+                    <el-menu-item index="2" >Cart</el-menu-item>
+                </div>
+                <div class="block3">
 
                 
-                    <el-menu-item index="3" class="l">
-                        About<el-icon><InfoFilled /></el-icon>
-                    </el-menu-item>
+                    <el-menu-item index="3" >About</el-menu-item>
                    
-                <!-- </div> -->
+                </div>
                 
-                <!-- <div class="block4"> -->
-                    <el-menu-item index="4">
-                        Search<el-icon><Search /></el-icon>
-                    </el-menu-item>
-                <!-- </div> -->
+                <div class="block4">
+                    <el-menu-item index="4">Search</el-menu-item>
+                </div>
                     
-                <!-- <div class="block5"> -->
+                <div class="block5">
                     
                     <el-sub-menu index="5">
-                    <template #title>
-                        <el-avatar
-        src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-      />
-                    </template>
+                    <template #title>Account</template>
                     <el-menu-item index="5-1">个人信息</el-menu-item>
                     <el-menu-item index="5-2">切换账号</el-menu-item>
                     <el-menu-item index="5-3">退出登录</el-menu-item>
                     </el-sub-menu>
-                    
-                <!-- </div> -->
+                </div>
                 
                 
             </el-menu>
@@ -81,10 +70,9 @@ const handleSelect = (key, keyPath) => {
 </template>
 
 <style scoped>
-
 .header {
     display: flex;
-    width: 100vh;
+    width: 100%;
 }
 
 .block1 {
@@ -93,25 +81,25 @@ const handleSelect = (key, keyPath) => {
     margin: 0 0;
 }
 .block2 {
-    width: 52vw;
+    width: 45vw;
     display: flex;
     margin: 0 0;
 }
 
 .block2-1 {
-    width: 7vw;
+    width: 6vw;
     display: flex;
     margin: 0 0;
 }
 .block3 {
     width: 6vw;
     display: flex;
-    margin: 0 10px 0 0;
+    margin: 0 0;
 }
 .block4 {
-    width: 7vw;
+    width: 6vw;
     display: flex;
-    margin: 0 10px;
+    margin: 0 0;
 }
 .block5 {
     width: 6vw;
