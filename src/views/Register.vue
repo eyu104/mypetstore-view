@@ -1,4 +1,4 @@
-<template>
+<template xmlns:el-col="http://www.w3.org/1999/html">
   <div id="poster">
     <el-form
     :model="ruleForm"
@@ -9,7 +9,6 @@
      class="register-container">
         <h3 class="register_title">
             系统注册
-            <el-button type="primary" color="#505458" @click="toLogin()">去登陆</el-button>
         </h3>
       <el-collapse v-model="activeNames" accordion>
         <el-collapse-item title="基本信息" name="1" >
@@ -20,17 +19,6 @@
                 v-model="ruleForm.username"
                 placeholder="请输入用户名"
                 prefix-icon="el-icon-user-solid"
-                class="my-input"
-                @blur="isExist"
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="" prop="Email">
-            <el-input
-                type="text"
-                autocomplete="off"
-                v-model="ruleForm.email"
-                prefix-icon="el-icon-user-solid"
-                placeholder="请输入邮箱"
                 class="my-input"
             ></el-input>
           </el-form-item>
@@ -55,6 +43,37 @@
                 class="my-input"
             ></el-input>
           </el-form-item>
+          <el-form-item label="" prop="email">
+            <el-input
+                type="text"
+                autocomplete="off"
+                v-model="ruleForm.email"
+                prefix-icon="el-icon-user-solid"
+                placeholder="请输入邮箱"
+                class="my-input"
+            ></el-input>
+          </el-form-item>
+
+          <el-row :gutter="1">
+            <el-form-item label="" prop="vcode">
+              <el-col :span="30"><div class="grid-content bg-purple">
+                <el-input
+                    type="text"
+                    v-model="vcode"
+                    placeholder="请输入验证码"
+                    prefix-icon="el-icon-lock"
+                    autocomplete="off"
+                    class="my-input"
+                ></el-input>
+              </div></el-col>
+            </el-form-item>
+            <el-form-item>
+              <el-col :span="30"><div class="grid-content bg-purple">
+                <el-button type="primary" color="#505458" @click="checkCode">获取验证码</el-button>
+              </div></el-col>
+            </el-form-item>
+          </el-row>
+
         </el-collapse-item>
 
 
@@ -230,12 +249,13 @@
         <el-button type="primary" color="#505458" @click="submitForm(ruleForm)">注册</el-button>
         <el-button type="primary" color="#505458" @click="resetForm('ruleForm')">重置</el-button>
     </el-form-item>
+      <el-link :underline="false" @click="toLogin" type="warning">已有账号？点我登陆</el-link>
     </el-form>
   </div>
 </template>
 
 <script>
-
+import request from "../utils/request";
 export default {
   name: 'Register',
   data() {
@@ -243,7 +263,7 @@ export default {
         if (value === '') {
           callback(new Error('请输入密码'));
         } else {
-          if (this.checkPass !== '') {
+          if (this.ruleForm.checkPass !== '') {
             this.$refs.ruleForm.validateField('checkPass');
           }
           callback();
@@ -258,34 +278,57 @@ export default {
           callback();
         }
       };
-      return {
+
+    var validatePass3 = (rule, value, callback) => {
+      request.post('/account/isExist',this.ruleForm).then((resp)=>{
+        let data = resp.data;
+        if(resp.code=='1'){
+          callback(new Error('该账号已存在'));
+        }
+      })
+    };
+
+    var checkEmail = (rule, value, callback) => {
+      const mailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+      if (value==='') {
+        return callback(new Error("邮箱不能为空"));
+      }
+        if (mailReg.test(value)) {
+          callback();
+        } else {
+          callback(new Error("请输入正确的邮箱格式"));
+        }
+    };
+
+
+    return {
 
         options1: [{
-          value: '选项1',
+          value: '中文',
           label: '中文'
         }, {
-          value: '选项2',
+          value: 'English',
           label: 'English'
         },{
-          value: '选项3',
+          value: 'Japanese',
           label: 'Japanese'
         }
         ],
 
         options2: [{
-          value: '选项1',
+          value: 'FISH',
           label: 'FISH'
         }, {
-          value: '选项2',
+          value: 'DOGS',
           label: 'DOGS'
         }, {
-          value: '选项3',
+          value: 'REPTILES',
           label: 'REPTILES'
         }, {
-          value: '选项4',
+          value: 'CATS',
           label: 'CATS'
         }, {
-          value: '选项5',
+          value: 'BIRDS',
           label: 'BIRDS'
         }],
 
@@ -311,16 +354,17 @@ export default {
           bannerName:'',
           checkPass: '',
         },
-
+        vcode:'',
 
 
         rules: {
           username: [
             { required: true,message:"请输入你的名称", trigger: 'blur' },
-            { min: 2,max:9,message:"长度2到9个字符", trigger: 'blur' }
+            { min: 2,max:9,message:"长度2到9个字符", trigger: 'blur' },
+            {validator:validatePass3,trigger: 'blur'}
           ],
           email: [
-            { required: true,message:"请输入你的邮箱", trigger: 'blur' },
+            { validator:checkEmail,trigger: 'blur' },
           ],
           password: [
             { validator: validatePass, trigger: 'blur' }
@@ -333,35 +377,52 @@ export default {
     },
     methods: {
 
-      isExist()
-      {
-        this.axios.post('/api/account/isExist',this.ruleForm).then((resp)=>{
-              let data = resp.data;
-              if(data.code=='1'){
-                this.ruleForm= {};
-                this.$message({
-                  type: 'error',
-                  message: data.msg
-                });
-              }
-            })
-      },
       submitForm() {
-        this.axios.post('/api/account/new',this.ruleForm).then((resp)=>{
+        request.post('/email/checkEmail',this.ruleForm.email,this.vcode).then((resp)=>{
+          if(resp.code!==50)
+          {
+
+          }
+          else
+          {
+            this.$message({
+              message: resp.msg,
+              type: 'error'
+            });
+          }
+
+        })
+
+
+        request.post('/account/new',this.ruleForm).then((resp)=>{
             console.log(resp);
             let data = resp.data;
             console.log(data);
-            if(data.success){
+            if(resp.code === "0"){
               this.ruleForm= {};
                 this.$message({
                 message: '恭喜你,注册成功,点击去登陆按钮进行登陆吧!!!',
                 type: 'success'
                 });
+                this.$router.push('/login')
             }
         })
 
 
       },
+
+      checkCode()
+      {
+        request.post('/email/sendEmail?tos='+this.ruleForm.email).then((resp)=>{
+          if(resp.code === "0"){
+            this.$message({
+              message: '发送成功',
+              type: 'success'
+            });
+          }
+        })
+      },
+
 
       resetForm(formName) {
         this.$refs[formName].resetFields();
@@ -379,7 +440,7 @@ export default {
 <style>
     #poster{
         background-position:center;
-        height:100%;
+        height:80vh;
         width:100%;
         background-size:cover;
         position:fixed;

@@ -10,7 +10,7 @@ export default {
  
     <div class="common-layout">
 
-      <RouterView />
+      <RouterView :key="$route.fullPath" />
 
     </div>
 
