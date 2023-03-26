@@ -172,6 +172,7 @@ const toLog = () => {
   border-radius:15px;
   background-clip:padding-box;
   margin:5% auto;
+  height: 80vh;
   width:60%;
   padding: 35px 35px 15px 35px;
   background:#fff;

@@ -9,11 +9,16 @@
       height=65vh
       >
     <el-table-column
+        fixed
+        label="订单编号"
         prop="orderId"
-        label="订单编号">
+    >
+      <template #default="scope">
+       <el-link @click="" underline="false">{{scope.row.orderId}}</el-link>
+      </template>
     </el-table-column>
     <el-table-column
-        prop="orderData"
+        prop="orderDate"
         label="日期"
         width="180">
     </el-table-column>
@@ -39,25 +44,26 @@ export default {
         username,
         password: '',
         email: '',
-        firstName:'',
-        lastName:'',
-        status:'',
-        address1:'',
-        address2:'',
-        city:'',
-        state:'',
-        zip:'',
-        country:'',
-        phone:'',
-        favouriteCategoryId:'',
-        languagePreference:'',
-        listOption:false,
-        bannerOption:false,
-        bannerName:'',
+        firstName: '',
+        lastName: '',
+        status: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: '',
+        zip: '',
+        country: '',
+        phone: '',
+        favouriteCategoryId: '',
+        languagePreference: '',
+        listOption: false,
+        bannerOption: false,
+        bannerName: '',
         checkPass: ''
       },
 
-      tableData: []
+      tableData: [],
+
     }
   },
   created() {
@@ -68,16 +74,25 @@ export default {
   methods:{
     load()
     {
-      request.post('/cart/orderList',this.ruleForm).then((resp)=>{
+      request.get('/order/getOrders',{
+        params: {
+          username: account.username
+        }
+      }).then((resp)=>{
 
         console.log(resp);
         console.log(resp.data);
         this.tableData=resp.data;
         console.log(this.tableData);
       })
+    },
+    toOrder()
+    {
+      console.log(this.tableData)
     }
+  },
 
-  }
+
 }
 </script>
 <style>
@@ -93,7 +108,7 @@ export default {
   background-clip:padding-box;
   margin:3% auto;
   width:70%;
-  height: 70vh;
+  height: 80vh;
   padding: 35px 35px 15px 35px;
   background:#fff;
   border:1px solid #eaeaea;
