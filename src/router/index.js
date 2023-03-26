@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Layout from '../layout/Layout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -6,6 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'Layout',
+      component: Layout,
       redirect:"/home",
       children:[
         {
@@ -19,28 +21,34 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: ()=>import('../views/Login.vue')
-
+      component: Layout,
+      children:[
+        {
+          path:'/login',
+          name:'login',
+          component: ()=>import('../views/Login.vue')
+        }
+      ]
     },
 
     {
       path: '/register',
       name: 'register',
-      component: ()=>import('../views/Register.vue')
-
-    },
-
-    {
-      path: '/edit',
-      name: 'edit',
-      component: ()=>import('../views/EditInfo.vue')
-
+      component: Layout,
+      children:[
+        {
+          path: '/register',
+          name: 'register',
+          component: ()=>import('../views/Register.vue')
+        }
+      ]
     },
 
     {
       path: '/about',
       name: 'about',
 
+      component: Layout,
       children:[
         {
           path: '/about',
@@ -54,6 +62,7 @@ const router = createRouter({
     {
       path: '/category',
       name: 'category',
+      component: Layout,
       children:[
         {
           path: '/category',
@@ -62,14 +71,8 @@ const router = createRouter({
         }
       ]
 
-    },
+    }
 
-    {
-      path: '/info',
-      name: 'info',
-      component: ()=>import('../views/AccountInform.vue')
-
-    },
 
   ]
 })

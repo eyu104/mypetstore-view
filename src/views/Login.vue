@@ -1,5 +1,6 @@
 <template>
-    <body id="poster">
+  <main>
+    <div id="poster">
         <el-form class="login-container" label-position="left"  label-width="0px">
             <h3 class="login_title">
                 系统登陆
@@ -15,7 +16,8 @@
                 <el-link :underline="false" @click="toRegister" type="warning">没账号？点我注册</el-link>
             </el-form-item>
         </el-form>
-    </body>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -95,10 +97,9 @@ export default {
 <style>
     #poster{
         background-position:center;
-        height:100%;
+        height:75vh;
         width:100%;
         background-size:cover;
-        position:fixed;
     }
     body{
         margin:0px;
