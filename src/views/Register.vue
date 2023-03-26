@@ -441,10 +441,9 @@ export default {
 #poster{
   background-position:center;
   height:80vh;
-  width:100%;
   background-size:cover;
-  margin:0px;
-  padding:0px;
+  margin:10px;
+  padding:10px;
 }
 
 

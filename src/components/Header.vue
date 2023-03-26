@@ -1,6 +1,27 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+import {accountStore} from "../stores/account";
+import {storeToRefs} from "pinia";
+const account = accountStore()
+let {username,
+  password,
+  email,
+  firstName,
+  lastName,
+  status,
+  address1,
+  address2,
+  city,
+  state,
+  zip,
+  country,
+  phone,
+  favouriteCategoryId,
+  languagePreference,
+  listOption,
+  bannerOption,
+  bannerName} = storeToRefs(account)
 
 const activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
@@ -61,9 +82,15 @@ const handleSelect = (key, keyPath) => {
                   src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
               />
             </template>
+
+            <div v-if="username===''">
+              <el-menu-item index="login">登录</el-menu-item>
+            </div>
+
+            <div v-else>
             <el-menu-item index="5-1">个人信息</el-menu-item>
-            <el-menu-item index="5-2">切换账号</el-menu-item>
-            <el-menu-item index="login">退出登录</el-menu-item>
+            <el-menu-item index="login" @click="account.$reset()">退出登录</el-menu-item>
+            </div>
           </el-sub-menu>
 
           <!-- </div> -->
