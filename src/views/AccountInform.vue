@@ -19,6 +19,7 @@
 
   </el-descriptions>
     <el-button @click="toEdit">修改个人信息</el-button>
+    <el-button @click="toLog">查看订单日志</el-button>
   </div>
 </template>
 
@@ -50,7 +51,15 @@ let {username,
     bannerName} = storeToRefs(account)
 const toEdit = () => {
   router.push({
-    name: 'edit',
+    path:'/edit',
+    query: {
+      ...route.query
+    }
+  })
+}
+const toLog = () => {
+  router.push({
+    path:'/OrderLog',
     query: {
       ...route.query
     }

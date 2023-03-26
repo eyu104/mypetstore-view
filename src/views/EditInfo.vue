@@ -4,9 +4,8 @@
         :model="ruleForm"
         :rules="rules"
         ref="ruleForm"
-        label-width="0px"
-        label-position="left"
-        class="register-container">
+        label-position="right"
+    >
       <h3 class="register_title">
         信息修改
       </h3>
@@ -59,7 +58,7 @@
 
         <el-collapse-item title="详细信息" name="2">
           <el-row :gutter="1">
-            <el-form-item label="名" label-width="60px" prop="firstName">
+            <el-form-item label="名" label-width="100px" prop="firstName">
 
               <el-col :span="25"><div class="grid-content bg-purple">
                 <el-input
@@ -72,7 +71,7 @@
                 ></el-input>
               </div></el-col>
             </el-form-item>
-            <el-form-item label="姓" label-width="60px" prop="lastName">
+            <el-form-item label="姓" label-width="100px" prop="lastName">
               <el-col :span="25"><div class="grid-content bg-purple">
                 <el-input
                     type="text"
@@ -86,7 +85,7 @@
             </el-form-item>
           </el-row>
 
-          <el-form-item label="电话" label-width="60px" prop="phone">
+          <el-form-item label="电话" label-width="100px" prop="phone">
             <el-input
                 type="text"
                 v-model="ruleForm.phone"
@@ -99,7 +98,7 @@
           </el-form-item>
 
           <el-row :gutter="1">
-            <el-form-item label="地址1" label-width="60px" prop="address1">
+            <el-form-item label="地址1" label-width="100px" prop="address1">
               <el-col :span="25"><div class="grid-content bg-purple">
                 <el-input
                     type="text"
@@ -111,7 +110,7 @@
                 ></el-input>
               </div></el-col>
             </el-form-item>
-            <el-form-item label="地址2" label-width="60px"  prop="address2">
+            <el-form-item label="地址2" label-width="100px"  prop="address2">
               <el-col :span="25"><div class="grid-content bg-purple">
                 <el-input
                     type="text"
@@ -126,7 +125,7 @@
           </el-row>
 
           <el-row :gutter="1">
-            <el-form-item label="城市" label-width="60px"  prop="city">
+            <el-form-item label="城市" label-width="100px"  prop="city">
               <el-col :span="25"><div class="grid-content bg-purple">
                 <el-input
                     type="text"
@@ -138,7 +137,7 @@
                 ></el-input>
               </div></el-col>
             </el-form-item>
-            <el-form-item label="省份" label-width="60px"  prop="state">
+            <el-form-item label="省份" label-width="100px"  prop="state">
               <el-col :span="25"><div class="grid-content bg-purple">
                 <el-input
                     type="text"
@@ -153,7 +152,7 @@
           </el-row>
 
           <el-row :gutter="1">
-            <el-form-item label="邮政编码" label-width="80px"  prop="zip">
+            <el-form-item label="邮政编码" label-width="100px"  prop="zip">
               <el-col :span="25"><div class="grid-content bg-purple">
                 <el-input
                     type="text"
@@ -165,7 +164,7 @@
                 ></el-input>
               </div></el-col>
             </el-form-item>
-            <el-form-item label="国家" label-width="60px"  prop="country">
+            <el-form-item label="国家" label-width="100px"  prop="country">
               <el-col :span="25"><div class="grid-content bg-purple">
                 <el-input
                     type="text"

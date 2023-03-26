@@ -30,6 +30,31 @@ const router = createRouter({
         }
       ]
     },
+    {
+      path: '/info',
+      name: 'info',
+      component: Layout,
+      children:[
+        {
+          path:'/info',
+          name:'info',
+          component: ()=>import('../views/AccountInform.vue')
+        }
+      ]
+    },
+
+    {
+      path: '/edit',
+      name: 'edit',
+      component: Layout,
+      children:[
+        {
+          path:'/edit',
+          name:'edit',
+          component: ()=>import('../views/EditInfo.vue')
+        }
+      ]
+    },
 
     {
       path: '/register',
@@ -68,6 +93,20 @@ const router = createRouter({
           path: '/category',
           name: 'category',
           component: () => import('../views/CategoryView.vue')
+        }
+      ]
+
+    },
+
+    {
+      path: '/OrderLog',
+      name: 'OrderLog',
+      component: Layout,
+      children:[
+        {
+          path: '/OrderLog',
+          name: 'OrderLog',
+          component: () => import('../views/OrderLog.vue')
         }
       ]
 
