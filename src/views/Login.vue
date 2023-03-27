@@ -98,7 +98,6 @@ export default {
     #poster{
         background-position:center;
         height:75vh;
-        width:100%;
         background-size:cover;
     }
     body{

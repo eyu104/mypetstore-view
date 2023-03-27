@@ -1,6 +1,5 @@
 <script>
 
-
 export default {
 
   mounted() {
