@@ -24,7 +24,8 @@ export default {
     };
   },
   methods: {
-
+    begin() {this.$router.push({path:'/category'})
+    }
   }
 }
 </script>
@@ -61,7 +62,7 @@ export default {
 
         <div style="margin: 10px 10px">
 
-          <a href="http://localhost:5173/category" class="btn" >
+          <a @click="begin" class="btn" >
             <b><span>从此开始</span></b>
           </a>
 
