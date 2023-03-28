@@ -55,7 +55,7 @@ const handleSelect = (key, keyPath) => {
           </div>
 
           <!-- <div class="block2-1"> -->
-          <el-menu-item index="2" >
+          <el-menu-item index="orders" >
             Cart<el-icon><ShoppingCart /></el-icon>
           </el-menu-item>
           <!-- </div> -->

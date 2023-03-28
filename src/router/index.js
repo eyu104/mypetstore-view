@@ -135,6 +135,30 @@ const router = createRouter({
       ]
     },
     {
+      path: '/cart',
+      name: 'cart',
+      component: Layout,
+      children:[
+        {
+          path: '/cart',
+          name: 'cart',
+          component: () => import('../views/CartView.vue')
+        }
+      ]
+    },
+    {
+      path: '/orders',
+      name: 'orders',
+      component: Layout,
+      children:[
+        {
+          path: '/orders',
+          name: 'orders',
+          component: () => import('../views/OrderView.vue')
+        }
+      ]
+    },
+    {
       path: '/OrderLog',
       name: 'OrderLog',
       component: Layout,
