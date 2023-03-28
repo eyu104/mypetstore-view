@@ -32,7 +32,7 @@ export default {
 <template>
 
 
-<div style="width: 95vw;padding: 10px">
+<div style="width: 95vw;padding: auto">
 
   <div style="padding: 10px;height: 25vh;background-image: url('src/assets/images/background.gif');" >
 
@@ -54,8 +54,8 @@ export default {
         <div style="margin: 15px">
         <div style="margin: 10px 10px">
 
-          <div><el-text class="mx-1" style="font-size: 40px;color: white;">进入商店，</el-text></div>
-          <div><el-text class="mx-1" style="font-size: 40px;color: white;">选购心仪的宠物吧！</el-text></div>
+          <div><el-text class="mx-1" style="font-size: 35px;color: white;">进入商店，</el-text></div>
+          <div><el-text class="mx-1" style="font-size: 35px;color: white;">选购心仪的宠物吧！</el-text></div>
 
         </div>
 

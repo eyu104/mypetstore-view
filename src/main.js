@@ -10,7 +10,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import LoginForm from "./assets/LoginForm.css";
+import LoginForm from "./assets/LoginForm.css?inline";
 
 import 'element-plus/dist/index.css'
 

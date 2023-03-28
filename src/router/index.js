@@ -97,7 +97,43 @@ const router = createRouter({
       ]
 
     },
+    {
+      path: '/product',
+      name: 'product',
+      component: Layout,
+      children:[
+        {
+          path: '/product',
+          name: 'product',
+          component: () => import('../views/ProductsView.vue')
+        }
+      ]
 
+    },
+    {
+      path: '/item',
+      name: 'item',
+      component: Layout,
+      children:[
+        {
+          path: '/item',
+          name: 'item',
+          component: () => import('../views/ItemView.vue')
+        }
+      ]
+    },
+    {
+      path: '/itemInfo',
+      name: 'itemInfo',
+      component: Layout,
+      children:[
+        {
+          path: '/itemInfo',
+          name: 'itemInfo',
+          component: () => import('../views/ItemInfoView.vue')
+        }
+      ]
+    },
     {
       path: '/OrderLog',
       name: 'OrderLog',

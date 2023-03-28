@@ -1,4 +1,45 @@
 <script setup>
+
+import { ref,watch } from 'vue'
+import { onMounted,onBeforeMount } from 'vue'
+import { useRouter,useRoute } from "vue-router";
+import request from "../utils/request"
+
+const route = useRoute()
+const id = route.query.itemId
+
+const router = useRouter()
+const item = ref([])
+const name = ref('')
+const price = ref(0)
+const des = ref('')
+const attr = ref('')
+const num = ref(0)
+const productId = ref('')
+
+onMounted(()=>{
+  load()
+})
+
+const load = () => {
+  request.get('/category/findItem',{
+    params:{
+      itemId: id
+    }
+  }).then(res => {
+    item.value = res.data
+    name.value = item.value.product.name
+    price.value = item.value.listPrice
+    const de = ref([])
+    de.value = item.value.product.description.split('>')
+    des.value = de.value[1]
+    attr.value = item.value.attribute1
+    num.value = item.value.quantity
+    productId.value = item.value.product.productId
+    console.log(item.value.product)
+  })
+}
+
 const fits = ['fill', 'contain', 'cover', 'none', 'scale-down']
 const url =
   'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
@@ -16,23 +57,23 @@ const url =
         <el-card class="box-card" :body-style="{background: '#fcf7f1'}">
         <template #header>
         <div class="card-header">
-          <span>商品名</span>
+          <span>{{ name }}</span>
         </div>
         </template>
           <div class="text-item">
-            <p class="price">￥62.4</p>
+            <p class="price">￥{{ price }}</p>
           </div>
           <div class="text-item">
-            <p class="card-p">产品ID：</p>
+            <p class="card-p">产品ID：{{ productId }}</p>
           </div>
           <div class="text-item">
-            <p class="card-p">描述：</p>
+            <p class="card-p">描述：{{ des }}</p>
           </div>
           <div class="text-item">
-            <p class="card-p">状况：</p>
+            <p class="card-p">状况：{{ attr }}</p>
           </div>
           <div class="text-item">
-            <p class="card-p">库存：</p>
+            <p class="card-p">库存：{{ num }}</p>
           </div>
           <el-button class="button" type="danger" >加入购物车</el-button>
 

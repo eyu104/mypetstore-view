@@ -1,14 +1,45 @@
 <script setup>
-import { ref } from 'vue'
+import { ref,watch } from 'vue'
+import { onMounted } from 'vue'
+import { useRouter } from "vue-router";
+import request from "../utils/request"
 
+const router = useRouter()
 const currentDate = ref(new Date())
+const categoryLists = ref([])
+const len = ref(0)
+onMounted(() => {
+ load()
+})
+
+const load = () => {
+  request.get('/category/findCate').then((res) => {
+    categoryLists.value = res.data;
+    len.value = categoryLists.value.length
+    console.log(categoryLists.value.length)
+  })
+}
+
+const interCategory = (o) => {
+  let name = categoryLists.value[o].categoryId
+  router.push(
+    {
+      path: '/product',
+      query: {
+        categoryId: name
+      }
+    }
+  )
+
+}
+
 </script>
 
 <template>
   <main>
     <el-row :gutter="20">
       <el-col
-        v-for="(o, index) in 10"
+        v-for="(categoryItem,o) in categoryLists"
         :key="o"
         :span="8"
         :offset="0"
@@ -20,9 +51,9 @@ const currentDate = ref(new Date())
           class="image"
         />
         <div style="padding: 14px">
-          <span>Yummy hamburger</span>
+          <span>{{ categoryItem.categoryId }}</span>
           <div class="bottom">
-            <el-button text class="button" style="border: #545c64 solid 1px; width: 60px;">View</el-button>
+            <el-button text class="button" @click="interCategory(o)" style="border: #545c64 solid 1px; width: 60px;">View</el-button>
           </div>
         </div>
       </el-card>
