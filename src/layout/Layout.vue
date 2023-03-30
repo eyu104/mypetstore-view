@@ -7,7 +7,8 @@
 
     <el-main>
       <div class="main">
-        <RouterView />
+        
+          <RouterView />
       </div>
     </el-main>
 

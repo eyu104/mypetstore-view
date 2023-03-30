@@ -62,14 +62,14 @@ const handleSelect = (key, keyPath) => {
           <!-- <div class="block3"> -->
 
 
-          <el-menu-item index="3" class="l">
+          <el-menu-item index="about" class="l">
             About<el-icon><InfoFilled /></el-icon>
           </el-menu-item>
 
           <!-- </div> -->
 
           <!-- <div class="block4"> -->
-          <el-menu-item index="4">
+          <el-menu-item index="search">
             Search<el-icon><Search /></el-icon>
           </el-menu-item>
           <!-- </div> -->

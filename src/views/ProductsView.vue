@@ -6,12 +6,7 @@ import request from "../utils/request"
 const url = ref([]
 )
 
-const srcList = ref([[
-'https://gss0.baidu.com/-4o3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/d1a20cf431adcbef927ec91aa1af2edda3cc9f60.jpg',
-'https://ts1.cn.mm.bing.net/th/id/R-C.5a4502c9ae240005df8fdcd9456ca04e?rik=vGqGMuvvbmgsvQ&riu=http%3a%2f%2fimg.zcool.cn%2fcommunity%2f013dea5542b3660000019ae973cc39.jpg%401280w_1l_2o_100sh.jpg&ehk=TIHSFWtFyomJQEPrXchC8QthvMCcgoAAY3A4CsEx04Q%3d&risl=&pid=ImgRaw&r=0'
-]])
-
-
+const srcList = ref([])
 const router = useRouter()
 const route = useRoute()
 const categoryId = route.query.categoryId
@@ -22,8 +17,7 @@ onMounted(() => {
  load()
 })
 
-
-
+// 根据categoryId加载产品列表
 const load = () => {
   request.get('/category/findProd',{
     params:{
@@ -35,6 +29,7 @@ const load = () => {
       var b = item.description.split("\"");
       item.description = b[1]
       url.value.push(b[1])
+      srcList.value.push(b[1])
       console.log(b[1])
     });
     productList.value = datas
@@ -43,6 +38,8 @@ const load = () => {
 console.log(categoryId)
 }
 
+
+// 跳转
 const interItem = (o) => {
   const id = o.productId
   
@@ -77,7 +74,7 @@ const interItem = (o) => {
                     padding-left: 0px;"
             :src="url[index]"
             :zoom-rate="1.2"
-            :preview-src-list="o.description"
+            :preview-src-list="srcList"
             :initial-index="4" />
           <div style="margin-top: 10px;">
             <span>产品ID：  </span>

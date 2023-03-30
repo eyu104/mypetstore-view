@@ -1,35 +1,38 @@
 <script setup>
-import { ref,watch } from 'vue'
-import { onMounted,onBeforeMount } from 'vue'
+import { ref } from 'vue'
+import { onMounted } from 'vue'
 import { useRouter,useRoute } from "vue-router";
 import request from "../utils/request"
 
 const route = useRoute()
-const id = route.query.productId
+const tId = route.query.productId
 
 const router = useRouter()
 const itemList = ref([])
-const len = ref(0)
 
-onMounted(()=>{
-  load()
+onMounted(() => {
+ load()
 })
 
+// 根据categoryId加载产品列表
 const load = () => {
   request.get('/category/findItems',{
     params:{
-      productId: id
+      productId: tId
     }
   }).then(res => {
     let datas = res.data
     datas.forEach(item => {
       var b = item.product.description.split("\"");
       item.product.description = b[1]
-      console,load(b[1] + 'bbb')
+      console.log(b[1])
     });
     itemList.value = datas
+    console.log(itemList.value)
   })
 }
+
+
 
 const itemInfo = (o) => {
   const oId = o.itemId
@@ -40,7 +43,9 @@ const itemInfo = (o) => {
           itemId: oId
       }
     }
-  )
+  ).catch((err)=>{
+
+  })
 }
 
 </script>
@@ -50,12 +55,14 @@ const itemInfo = (o) => {
     <el-row :gutter="20">
       <el-col
         v-for="(o, index) in itemList"
-        :key="o"
+        :key="index"
         :span="6"
         :offset="0"
       >
         <div class="item">
+
           <el-card shadow="hover" :body-style="{ padding: '0px', margin: '5px 0' }">
+
             <div class="itemInfo">
               <div>{{ o.product.name }}</div>
               <img
@@ -82,7 +89,9 @@ const itemInfo = (o) => {
                 <el-button text class="button" @click="itemInfo(o)" style="border: #545c64 solid 1px; width: 60px; margin: 0 auto;">View</el-button>
               </div>
             </div>
+
           </el-card>
+
         </div>
       </el-col>
   </el-row>
