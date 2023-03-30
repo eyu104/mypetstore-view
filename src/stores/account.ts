@@ -30,5 +30,6 @@ export const accountStore = defineStore("account",{
     },
     getters: {
 
-    }
+    },
+    persist: true,
 })

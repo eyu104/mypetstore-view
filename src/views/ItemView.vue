@@ -21,12 +21,14 @@ const load = () => {
       productId: id
     }
   }).then(res => {
-    itemList.value = res.data
-    len.value = itemList.value.length
-    console.log(res + 'haha')
+    let datas = res.data
+    datas.forEach(item => {
+      var b = item.product.description.split("\"");
+      item.product.description = b[1]
+      console,load(b[1] + 'bbb')
+    });
+    itemList.value = datas
   })
-  console.log(itemList.value + '44')
-  console.log(id)
 }
 
 const itemInfo = (o) => {
@@ -57,7 +59,7 @@ const itemInfo = (o) => {
             <div class="itemInfo">
               <div>{{ o.product.name }}</div>
               <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+              :src="o.product.description"
               class="image"
               />
             </div>

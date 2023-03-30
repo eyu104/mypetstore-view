@@ -14,7 +14,7 @@
         prop="orderId"
     >
       <template #default="scope">
-       <el-link @click="" underline="false">{{scope.row.orderId}}</el-link>
+       <el-link @click="interOrder(scope.row.orderId)" underline="false">{{scope.row.orderId}}</el-link>
       </template>
     </el-table-column>
     <el-table-column
@@ -72,6 +72,14 @@ export default {
   },
 
   methods:{
+    interOrder(id){
+      this.$router.push({
+        path: '/orderInfo',
+        query:{
+            orderId: id
+        }
+      })
+    },
     load()
     {
       request.get('/order/getOrders',{
@@ -108,7 +116,6 @@ export default {
   background-clip:padding-box;
   margin:3% auto;
   width:70%;
-  height: 80vh;
   padding: 35px 35px 15px 35px;
   background:#fff;
   border:1px solid #eaeaea;

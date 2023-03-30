@@ -4,6 +4,9 @@ import { ref,watch } from 'vue'
 import { onMounted,onBeforeMount } from 'vue'
 import { useRouter,useRoute } from "vue-router";
 import request from "../utils/request"
+import { CartStore } from '../stores/cartN'
+import { storeToRefs } from 'pinia';
+import {accountStore} from "../stores/account";
 
 const route = useRoute()
 const id = route.query.itemId
@@ -16,7 +19,12 @@ const des = ref('')
 const attr = ref('')
 const num = ref(0)
 const productId = ref('')
+const cartStore = CartStore();
+let cart = ref(cartStore.cart)
+const account = accountStore()
+let temName = account.username
 
+console.log(cart)
 onMounted(()=>{
   load()
 })
@@ -39,6 +47,16 @@ const load = () => {
     console.log(item.value.product)
   })
 }
+console.log(temName)
+console.log(cart)
+const addToCart = (item) => {
+    request.post('/cart/addToCart/'+ item.itemId + '/' + temName
+    ).then((res)=>{
+        cartStore.cart = res.data
+        cart = res.data
+        console.log(cartStore.cart)
+    })
+}
 
 const fits = ['fill', 'contain', 'cover', 'none', 'scale-down']
 const url =
@@ -50,7 +68,7 @@ const url =
     <div class="demo-image">
     <div class="block">
       <span class="demonstration"></span>
-      <el-image style="width: 350px; height: 350px" :src="url" :fit="full" />
+      <el-image style="width: 350px; height: 350px" :src="url"  />
     </div>
     <div class="block">
       <div class="itemInfoTable">
@@ -75,7 +93,7 @@ const url =
           <div class="text-item">
             <p class="card-p">库存：{{ num }}</p>
           </div>
-          <el-button class="button" type="danger" >加入购物车</el-button>
+          <el-button class="button" type="danger" @click="addToCart(item)">加入购物车</el-button>
 
         </el-card>
       </div>

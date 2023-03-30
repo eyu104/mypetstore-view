@@ -8,17 +8,25 @@ const router = useRouter()
 const currentDate = ref(new Date())
 const categoryLists = ref([])
 const len = ref(0)
+let images = ref([])
 onMounted(() => {
  load()
 })
 
 const load = () => {
   request.get('/category/findCate').then((res) => {
-    categoryLists.value = res.data;
+    let datas = res.data
+    datas.forEach(item => {
+      var b = item.description.split("\"");
+      item.description = b[1]
+      images.value.push(b[1])
+    });
+    categoryLists.value = datas;
     len.value = categoryLists.value.length
     console.log(categoryLists.value.length)
   })
 }
+
 
 const interCategory = (o) => {
   let name = categoryLists.value[o].categoryId
@@ -29,7 +37,9 @@ const interCategory = (o) => {
         categoryId: name
       }
     }
-  )
+  ).catch((err)=>{
+    
+  })
 
 }
 
@@ -46,8 +56,8 @@ const interCategory = (o) => {
       >
         <div class="category">
           <el-card shadow="hover" :body-style="{ padding: '0px', margin: '5px 0',background: '#fcf7f1' }">
-        <img
-          src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+        <el-image
+          :src=categoryItem.description
           class="image"
         />
         <div style="padding: 14px">

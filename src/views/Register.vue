@@ -395,6 +395,7 @@ export default {
 
 
       request.post('/account/new',this.ruleForm).then((resp)=>{
+        console.log(this.ruleForm)
         console.log(resp);
         let data = resp.data;
         console.log(data);

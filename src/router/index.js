@@ -159,6 +159,18 @@ const router = createRouter({
       ]
     },
     {
+      path: '/orderInfo',
+      name: 'orderInfo',
+      component: Layout,
+      children:[
+        {
+          path: '/orderInfo',
+          name: 'orderInfo',
+          component: () => import('../views/OrderInfoView.vue')
+        }
+      ]
+    },
+    {
       path: '/OrderLog',
       name: 'OrderLog',
       component: Layout,

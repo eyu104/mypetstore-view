@@ -23,7 +23,9 @@
 <script>
 import request from "../utils/request";
 import {accountStore} from "../stores/account";
+import { CartStore } from '../stores/cartN'
 const account=accountStore();
+const cartStore = CartStore();
 export default {
   name: 'Login',
   data() {
@@ -67,9 +69,11 @@ export default {
               bannerOption:data.bannerOption,
               bannerName:data.bannerName,
             })
+           
             this.$message({
               message: '登陆成功!!!',
               type: 'success'
+              
             });
             this.$router.push({path:'/info'})
           }

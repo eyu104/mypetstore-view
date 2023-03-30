@@ -55,7 +55,7 @@ const handleSelect = (key, keyPath) => {
           </div>
 
           <!-- <div class="block2-1"> -->
-          <el-menu-item index="orders" >
+          <el-menu-item index="cart" >
             Cart<el-icon><ShoppingCart /></el-icon>
           </el-menu-item>
           <!-- </div> -->
@@ -88,7 +88,7 @@ const handleSelect = (key, keyPath) => {
             </div>
 
             <div v-else>
-            <el-menu-item index="5-1">个人信息</el-menu-item>
+            <el-menu-item index="info">个人信息</el-menu-item>
             <el-menu-item index="login" @click="account.$reset()">退出登录</el-menu-item>
             </div>
           </el-sub-menu>
