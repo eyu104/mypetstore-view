@@ -18,6 +18,7 @@ const price = ref(0)
 const des = ref('')
 const attr = ref('')
 const num = ref(0)
+const imageURL = ref('')
 const productId = ref('')
 const cartStore = CartStore();
 let cart = ref(cartStore.cart)
@@ -41,6 +42,8 @@ const load = () => {
     const de = ref([])
     de.value = item.value.product.description.split('>')
     des.value = de.value[1]
+    de.value = item.value.product.description.split('\"')
+    imageURL.value = de.value[1]
     attr.value = item.value.attribute1
     num.value = item.value.quantity
     productId.value = item.value.product.productId
@@ -59,8 +62,6 @@ const addToCart = (item) => {
 }
 
 const fits = ['fill', 'contain', 'cover', 'none', 'scale-down']
-const url =
-  'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
 </script>
 
 <template>
@@ -68,7 +69,7 @@ const url =
     <div class="demo-image">
     <div class="block">
       <span class="demonstration"></span>
-      <el-image style="width: 350px; height: 350px" :src="url"  />
+      <el-image style="width: 350px; height: 350px" :src="imageURL"  />
     </div>
     <div class="block">
       <div class="itemInfoTable">

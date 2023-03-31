@@ -1,8 +1,9 @@
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRouter, useRoute} from 'vue-router'
 import {accountStore} from "../stores/account";
 import {storeToRefs} from "pinia";
+import request from '../utils/request';
 const account = accountStore()
 let {username,
   password,
@@ -22,6 +23,59 @@ let {username,
   listOption,
   bannerOption,
   bannerName} = storeToRefs(account)
+
+const router = useRouter()
+const route = useRoute()
+
+const state1 = ref('')
+
+interface LinkItem {
+  value: string
+  link: string
+}
+
+const links = ref<LinkItem[]>([])
+
+
+let timeout = 500
+const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
+
+    links.value = []
+    request.get('/category/productAuto',{
+        params: {
+            keyword: queryString
+        }
+    }).then((res)=>{
+        let datas = res.data
+        datas.forEach(i => {
+            let tem = ref<LinkItem>()
+            tem.value = {
+                value: i.categoryId + '\: ' + i.name,
+                link: i.productId
+            }
+            links.value.push(tem.value)
+        });
+    })
+    const results = links.value
+
+    clearTimeout(timeout)
+    timeout = setTimeout(() => {
+        cb(results)
+    }, 3000 * Math.random())
+}
+
+const handleSelect1 = (item: LinkItem) => {
+  const id = item.link
+  
+    router.push(
+      {
+      path: '/item',
+      query: {
+        productId: id
+      }
+    }
+    )
+}
 
 const activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
@@ -51,7 +105,16 @@ const handleSelect = (key, keyPath) => {
 
 
           <div class="block2">
+            
+          </div>
 
+          <div class="block3">
+            <el-autocomplete
+            v-model="state1"
+            :fetch-suggestions="querySearchAsync"
+            placeholder="Please input"
+            @select="handleSelect1"
+          />
           </div>
 
           <!-- <div class="block2-1"> -->
@@ -69,9 +132,7 @@ const handleSelect = (key, keyPath) => {
           <!-- </div> -->
 
           <!-- <div class="block4"> -->
-          <el-menu-item index="search">
-            Search<el-icon><Search /></el-icon>
-          </el-menu-item>
+          
           <!-- </div> -->
 
           <!-- <div class="block5"> -->
@@ -116,43 +177,17 @@ const handleSelect = (key, keyPath) => {
 
 }
 
-.block1 {
-  width: 20vw;
-  display: flex;
-  margin: 0 0;
-}
 .block2 {
-  width: 52vw;
+  width: 48vw;
   display: flex;
   margin: 0 0;
-}
 
-.block2-1 {
-  width: 7vw;
-  display: flex;
-  margin: 0 0;
 }
 .block3 {
-  width: 6vw;
-  display: flex;
-  margin: 0 10px 0 0;
-}
-.block4 {
-  width: 7vw;
-  display: flex;
-  margin: 0 10px;
-}
-.block5 {
-  width: 6vw;
-  display: flex;
-  margin: 0 0;
-}
-.flex-grow {
-  flex-grow: 2;
+  width: 13vw;
+  display: inline-block;
+  padding-top: 13px;
 }
 
-/* .header>.el-menu--horizontal>.el-menu-item.is-active {
-    border-bottom: 2px solid var(--el-menu-active-color);
-    color: #295187;
-} */
+
 </style>
