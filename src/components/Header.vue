@@ -64,6 +64,11 @@ const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
     }, 3000 * Math.random())
 }
 
+const loginReset = () => {
+  account.$reset()
+  localStorage.clear()
+}
+
 const handleSelect1 = (item: LinkItem) => {
   const id = item.link
   
@@ -150,7 +155,7 @@ const handleSelect = (key, keyPath) => {
 
             <div v-else>
             <el-menu-item index="info">个人信息</el-menu-item>
-            <el-menu-item index="login" @click="account.$reset()">退出登录</el-menu-item>
+            <el-menu-item index="login" @click="loginReset()">退出登录</el-menu-item>
             </div>
           </el-sub-menu>
 

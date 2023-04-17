@@ -7,7 +7,7 @@ import request from "../utils/request"
 import { CartStore } from '../stores/cartN'
 import { storeToRefs } from 'pinia';
 import {accountStore} from "../stores/account";
-
+import { ElMessage } from 'element-plus'
 const route = useRoute()
 const id = route.query.itemId
 
@@ -58,6 +58,10 @@ const addToCart = (item) => {
         cartStore.cart = res.data
         cart = res.data
         console.log(cartStore.cart)
+        ElMessage({
+       message: '添加成功',
+        type: 'success',
+      })
     })
 }
 

@@ -38,5 +38,7 @@ export default {
 </script>
 
 <style scoped>
-
+.main {
+  min-height: 78vh;
+}
 </style>

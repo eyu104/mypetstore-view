@@ -69,7 +69,7 @@ export default {
               bannerOption:data.bannerOption,
               bannerName:data.bannerName,
             })
-           
+          localStorage.setItem('token',data.token)
             this.$message({
               message: '登陆成功!!!',
               type: 'success'
