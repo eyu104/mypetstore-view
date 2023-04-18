@@ -378,10 +378,29 @@ export default {
   methods: {
 
     submitForm() {
-      request.post('/email/checkEmail',this.ruleForm.email,this.vcode).then((resp)=>{
-        if(resp.code!==50)
+      request.get('/email/checkEmail',{
+        params: {
+          tos: this.ruleForm.email,
+          verCode: this.vcode,
+        }
+      }).then((resp)=>{
+        console.log(resp.code)
+        if(resp.code!=="50")
         {
-
+          request.post('/account/new',this.ruleForm).then((resp)=>{
+            console.log(this.ruleForm)
+            console.log(resp);
+            let data = resp.data;
+            console.log(data);
+            if(resp.code === "0"){
+              this.ruleForm= {};
+              this.$message({
+                message: '恭喜你,注册成功,点击去登陆按钮进行登陆吧!!!',
+                type: 'success'
+              });
+              this.$router.push('/login')
+            }
+          })
         }
         else
         {
@@ -391,22 +410,6 @@ export default {
           });
         }
 
-      })
-
-
-      request.post('/account/new',this.ruleForm).then((resp)=>{
-        console.log(this.ruleForm)
-        console.log(resp);
-        let data = resp.data;
-        console.log(data);
-        if(resp.code === "0"){
-          this.ruleForm= {};
-          this.$message({
-            message: '恭喜你,注册成功,点击去登陆按钮进行登陆吧!!!',
-            type: 'success'
-          });
-          this.$router.push('/login')
-        }
       })
 
 

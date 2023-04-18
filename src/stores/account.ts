@@ -26,7 +26,6 @@ export const accountStore = defineStore("account",{
 
     },
     actions: {
-
     },
     getters: {
 

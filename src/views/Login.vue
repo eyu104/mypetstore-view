@@ -1,5 +1,4 @@
 <template>
-  <main>
     <div id="poster">
         <el-form class="login-container" label-position="left"  label-width="0px">
             <h3 class="login_title">
@@ -17,83 +16,159 @@
             </el-form-item>
         </el-form>
     </div>
-  </main>
+  <div class="test" style="user-select: none">
+    <el-dialog
+        v-model="visible"
+        title="验证"
+        width="20%"
+        :before-close="handleClose"
+    >
+    <drag-verify-img-chip
+        ref="sss"
+        :imgsrc="img[Math.floor(Math.random()*5) ]"
+        :v-model:isPassing="isPassing"
+        :showRefresh="SR"
+        :barWidth="40"
+        text="请按住滑块拖动"
+        successText="验证通过"
+        handlerIcon="el-icon-d-arrow-right"
+        successIcon="el-icon-circle-check"
+        refreshIcon="el-icon-refresh"
+        @refresh="reimg"
+        @passcallback="pass"
+        align="center"
+    >
+    </drag-verify-img-chip>
+    </el-dialog>
+  </div>
 </template>
 
 <script>
 import request from "../utils/request";
 import {accountStore} from "../stores/account";
 import { CartStore } from '../stores/cartN'
+import dragVerifyImgChip from "../components/dragVerifyImgChip.vue";
 const account=accountStore();
 const cartStore = CartStore();
+let img0="src/assets/images/code.jpg"
+let img1="src/assets/images/code1.jpg"
+let img2="src/assets/images/code2.jpg"
+let img3="src/assets/images/code3.jpg"
+let img4="src/assets/images/code4.jpg"
 export default {
   name: 'Login',
   data() {
-
-
-      return {
+    return {
         loginForm: {
           username: '',
           password: ''
-        }
+        },
+      intervalId:null,
+        img:[
+            img0,
+            img1,
+            img2,
+            img3,
+            img4
+        ],
+        visible:false,
+        t3:"src/assets/images/code.jpg",
+        isPassing:false,
+        SR:true,
       }
     },
-    methods: {
+  components:{
+    dragVerifyImgChip,
+  },
+  methods: {
       Login() {
-        console.log('submit!',this.loginForm);
-        request.post('/account/login',this.loginForm).then((resp)=>{
-          let data = resp.data;
-          console.log(resp);
-          console.log(data);
-          if(resp.code !== "404")
-          {
-            this.loginForm= {};
 
-            account.$patch({
-              username: data.username,
-              password: data.password,
-              email: data.email,
-              firstName:data.firstName,
-              lastName:data.lastName,
-              status:data.status,
-              address1:data.address1,
-              address2:data.address2,
-              city:data.city,
-              state:data.state,
-              zip:data.zip,
-              country:data.country,
-              phone:data.phone,
-              favouriteCategoryId:data.favouriteCategoryId,
-              languagePreference:data.languagePreference,
-              listOption:data.listOption,
-              bannerOption:data.bannerOption,
-              bannerName:data.bannerName,
-            })
-          localStorage.setItem('token',data.token)
-            this.$message({
-              message: '登陆成功!!!',
-              type: 'success'
-              
-            });
-            this.$router.push({path:'/info'})
-          }
-          else
-            {
+        // this.$refs.sss.reset()
+        if(this.isPassing===false)
+        {
+          this.visible=true;
+          setTimeout(this.reimg,100)
+        }
+        if(this.isPassing===true) {
+          console.log('submit!', this.loginForm);
+          request.post('/account/login', this.loginForm).then((resp) => {
+            let data = resp.data;
+            console.log(resp);
+            console.log(data);
+            if (resp.code !== "404") {
+              this.loginForm = {};
+
+              account.$patch({
+                username: data.username,
+                password: data.password,
+                email: data.email,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                status: data.status,
+                address1: data.address1,
+                address2: data.address2,
+                city: data.city,
+                state: data.state,
+                zip: data.zip,
+                country: data.country,
+                phone: data.phone,
+                favouriteCategoryId: data.favouriteCategoryId,
+                languagePreference: data.languagePreference,
+                listOption: data.listOption,
+                bannerOption: data.bannerOption,
+                bannerName: data.bannerName,
+              })
+              localStorage.setItem('token', data.token)
+              this.$message({
+                message: '登陆成功!!!',
+                type: 'success'
+              });
+              this.$router.push({path: '/info'})
+              window.localStorage.setItem('token',resp.data.token)
+            } else {
+
               this.$message(
                   {
-                    type:"error",
-                    message:resp.msg
+                    type: "error",
+                    message: resp.msg
                   }
               )
+             setTimeout(this.handleReset(),1000)
+
             }
-        })
+          })
+        }
 
-
+      },
+      handleClose(){
+        this.visible=false;
       },
       toRegister(){
         this.$router.push({path:'/Register'})
-      }
-    }
+      },
+      reimg() {
+        this.$refs.sss.reset();
+        console.log(123)
+      },
+      pass() {
+        this.$message({
+          message: "验证通过",
+          type: "success"
+        });
+        console.log('通过')
+        this.SR = false
+        this.visible=false
+        this.isPassing = true
+
+      },
+      handleReset(){
+        this.$refs.sss.reset();
+        this.SR=true;
+        this.isPassing=false;
+
+      },
+
+    },
 
 }
 </script>

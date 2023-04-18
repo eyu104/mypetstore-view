@@ -3,6 +3,7 @@ import Layout from '../layout/Layout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+
   routes: [
     {
       path: '/',
@@ -31,6 +32,7 @@ const router = createRouter({
         }
       ]
     },
+
     {
       path: '/info',
       name: 'info',
@@ -53,18 +55,6 @@ const router = createRouter({
           path:'/edit',
           name:'edit',
           component: ()=>import('../views/EditInfo.vue')
-        }
-      ]
-    },
-    {
-      path: '/search',
-      name: 'search',
-      component: Layout,
-      children:[
-        {
-          path:'/search',
-          name:'search',
-          component: ()=>import('../views/SearchView.vue')
         }
       ]
     },
@@ -196,9 +186,6 @@ const router = createRouter({
       ]
 
     }
-
-
   ]
 })
-
 export default router
