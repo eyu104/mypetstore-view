@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
 import { RouterLink, RouterView, useRouter, useRoute} from 'vue-router'
 import {accountStore} from "../stores/account";
 import {storeToRefs} from "pinia";
@@ -29,6 +29,7 @@ const route = useRoute()
 
 const state1 = ref('')
 
+
 interface LinkItem {
   value: string
   link: string
@@ -39,7 +40,6 @@ const links = ref<LinkItem[]>([])
 
 let timeout = 500
 const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
-
     links.value = []
     request.get('/category/productAuto',{
         params: {
@@ -64,10 +64,18 @@ const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
     }, 3000 * Math.random())
 }
 
-const loginReset = () => {
-  account.$reset()
-  localStorage.clear()
+const getInfoByToken = () => {
+    var token = localStorage.getItem("token")
+    if(token === null){
+      console.log('token is null')
+    }
+    else{
+      request.get('/account/info').then((res)=>{
+        console.log(res.data)
+      })
+    }
 }
+
 
 const handleSelect1 = (item: LinkItem) => {
   const id = item.link

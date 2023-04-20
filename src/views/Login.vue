@@ -73,7 +73,6 @@ export default {
             this.$message({
               message: '登陆成功!!!',
               type: 'success'
-              
             });
             this.$router.push({path:'/info'})
           }

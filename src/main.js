@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 import ElementPlus from 'element-plus'
 import 'dayjs/locale/zh-cn'
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'//国际化
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'//国际化 未使用
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 

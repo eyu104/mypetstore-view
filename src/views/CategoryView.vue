@@ -58,7 +58,10 @@ const interCategory = (o) => {
           <el-card shadow="hover" :body-style="{ padding: '0px', margin: '5px 0',background: '#fcf7f1' }">
         <el-image
           :src=categoryItem.description
+          :fit="fill"
+          style="width: 30vw;height: 30vh;"
           class="image"
+          lazy
         />
         <div style="padding: 14px">
           <span>{{ categoryItem.categoryId }}</span>

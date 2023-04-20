@@ -10,22 +10,29 @@ import {
 import { useRouter,useRoute } from 'vue-router';
 import { CartStore } from '../stores/cartN'
 import {accountStore} from "../stores/account";
+import AdCard from '../components/AdCard.vue';
 
 const account = accountStore()
 let temName = account.username
 let tableData = ref([])
 let cartStore = CartStore()
+const myList = ref(false)
 const router = useRouter()
 const route = useRoute()
+
+const productList = ref([])
+
 tableData.value = cartStore.cart.cartItems
 console.log(tableData.value)
-
+myList.value = account.listOption
 onMounted(()=>{
   load()
+  getFavorite()
 })
 
 
 const load = () =>{
+    myList.value = account.listOption
     request.get('/cart/getCart',{
         params:{
             username: temName
@@ -74,6 +81,29 @@ const load2 =() => {
       })
     }
 
+
+
+const getFavorite = () => {
+  let name = account.favouriteCategoryId
+  request.get('/category/findProd',{
+    params:{
+      categoryId: name
+    }
+  }).then(res => {
+    let datas = res.data
+    datas.forEach(item => {
+      var b = item.description.split("\"");
+      var c = item.description.split(">")
+      item.description = []
+      item.description.push(b[1])
+      item.description.push(c[1])
+    });
+    productList.value = datas
+    console.log(productList.value)
+  })
+}
+
+
 const editQty = (itemId,qty) =>{
     request.post('/cart/update/' + temName + '/' + itemId + '/' + qty).then((res)=>{
         console.log(res)
@@ -100,6 +130,17 @@ const newOrder = () => {
     router.push({
         path: '/orders'
     })
+}
+
+const goToDetail = (id) =>{
+    router.push(
+      {
+      path: '/item',
+      query: {
+        productId: id
+      }
+    })
+
 }
 
 </script>
@@ -139,7 +180,20 @@ const newOrder = () => {
             
         </div>
         <div class="banner">
-
+            <div v-if="myList === true" class="ad">
+                <h2 style="text-align: center;">猜你喜欢</h2>
+                <el-carousel trigger="click" height="31.5vh">
+                    <el-carousel-item v-for="item in productList" :key="item" style="border-radius: 10px;">
+                        <AdCard 
+                        :name="item.categoryId"
+                        :descn="item.description[1]"
+                        :product-id="item.productId"
+                        :imgsrc="item.description[0]"
+                        @cilck="goToDetail(item.productId)"
+                        />
+                    </el-carousel-item>
+                </el-carousel>
+            </div>
         </div>
     </main>
 </template>
@@ -147,8 +201,9 @@ const newOrder = () => {
 
 <style scoped>
 .main-div {
+    position: relative;
+    display: inline-flexbox;
     width: 60vw;
-    
 }
 
 .title {
@@ -169,9 +224,14 @@ const newOrder = () => {
 }
 
 .banner {
-    width: 95vw;
+    display: inline-flexbox;
+    position: absolute;
+    width: 30vw;
     height: 50vh;
-    margin: 5px auto;
+    top: 0px;
+    right: 50px;
+    margin-top: 10vh;
+    color: #14616b;
 }
 
 </style>
