@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
     "axios": "^1.3.4",
     "element-plus": "^2.3.1",
     "pinia": "^2.0.33",
@@ -15,10 +16,17 @@
     "qs": "^6.11.1",
     "vue": "^3.2.47",
     "vue-axios": "^3.5.2",
+    "vue-drag-verify-img-chip": "^1.1.1",
+    "vue-drag-verify2": "^1.2.0",
+    "vue-monoplasty-slide-verify": "^1.3.1",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@vitejs/plugin-vue": "^4.1.0",
+    "sass": "^1.62.0",
+    "sass-loader": "^13.2.2",
+    "store": "^2.0.12",
     "vite": "^4.1.4"
   }
 }
