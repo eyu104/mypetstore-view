@@ -13,7 +13,7 @@ import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-
+import '../src/assets/base.css'
 import 'element-plus/dist/index.css'
 
 

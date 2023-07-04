@@ -15,6 +15,11 @@ defineProps({
     descn: {
         type: String,
         default: ''
+    },
+    bColor: {
+      type:String,
+      default: '#0d9545'
+
     }
 })
 
@@ -27,11 +32,12 @@ const getDetail = () =>{
 
 <template>
     <div class="box">
-        <div class="card" style="--color: #0d9545" @click="getDetail">
-            <img :src="imgsrc" alt="" srcset="">
+        <div class="card" :style="{
+          '--color':  bColor }" @click="getDetail">
+            <img class="imgs" :src="imgsrc" alt="" srcset="">
             <div class="text-box">
                 <h2>{{ name }}</h2>
-                <p>{{ productId }}</p>
+                <p style="font-size: 20px;">{{ productId }}</p>
                 <p>
                     {{ descn }}
                 </p>

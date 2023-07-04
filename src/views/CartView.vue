@@ -226,11 +226,11 @@ const goToDetail = (id) =>{
 .banner {
     display: inline-flexbox;
     position: absolute;
-    width: 30vw;
-    height: 50vh;
+    width: 30%;
+    height: 50%;
     top: 0px;
     right: 50px;
-    margin-top: 10vh;
+    margin-top: 5%;
     color: #14616b;
 }
 

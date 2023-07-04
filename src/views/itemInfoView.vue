@@ -73,7 +73,7 @@ const fits = ['fill', 'contain', 'cover', 'none', 'scale-down']
     <div class="demo-image">
     <div class="block">
       <span class="demonstration"></span>
-      <el-image style="width: 350px; height: 350px" :src="imageURL"  />
+      <el-image style="width: 500px; height: 350px" :src="imageURL"  />
     </div>
     <div class="block">
       <div class="itemInfoTable">

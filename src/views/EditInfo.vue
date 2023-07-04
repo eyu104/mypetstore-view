@@ -213,13 +213,13 @@
             </el-switch>
           </el-form-item>
 
-          <el-form-item label="启用MyBanner" label-width="120px" prop="favouriteCategoryId">
+          <!-- <el-form-item label="启用MyBanner" label-width="120px" prop="favouriteCategoryId">
             <el-switch
                 v-model="ruleForm.bannerOption"
                 active-color="#ffd04b"
                 inactive-color="#505458">
             </el-switch>
-          </el-form-item>
+          </el-form-item> -->
 
         </el-collapse-item>
       </el-collapse>

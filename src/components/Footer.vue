@@ -1,5 +1,7 @@
 <script setup>
 
+
+
 </script>
 
 <template>
@@ -9,7 +11,7 @@
         </div>
 
         <div id="Banner"  class="mp">
-
+            
         </div>
     </div>
 </template>

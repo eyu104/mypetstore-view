@@ -107,9 +107,11 @@ const itemInfo = (o) => {
 }
 
 .image {
+  width: 22vw;
+  height: 36vh;
   border-radius: 50%;
   padding-top: 10px;
-  padding-left: 14px;
+  /* padding-left: 14px; */
 }
 
 .item {

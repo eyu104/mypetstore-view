@@ -14,11 +14,11 @@ export default {
   data(){
     return {
       imgList: [
-        {id:0,idView: "src/assets/images/1.gif"},
-        {id:1,idView: "src/assets/images/2.gif"},
-        {id:2,idView: "src/assets/images/3.gif"},
-        {id:3,idView: "src/assets/images/4.gif"},
-        {id:4,idView: "src/assets/images/5.gif"}
+        {id:0,idView: "https://pstore-eyu104.oss-cn-guangzhou.aliyuncs.com/index/1.gif"},
+        {id:1,idView: "https://pstore-eyu104.oss-cn-guangzhou.aliyuncs.com/index/2.gif"},
+        {id:2,idView: "https://pstore-eyu104.oss-cn-guangzhou.aliyuncs.com/index/3.gif"},
+        {id:3,idView: "https://pstore-eyu104.oss-cn-guangzhou.aliyuncs.com/index/4.gif"},
+        {id:4,idView: "https://pstore-eyu104.oss-cn-guangzhou.aliyuncs.com/index/5.gif"}
       ]
     };
   },
@@ -34,7 +34,7 @@ export default {
 
 <div style="width: 95vw;padding: auto">
 
-  <div style="padding: 10px;height: 25vh;background-image: url('src/assets/images/background.gif');" >
+  <div style="padding: 10px;height: 25vh;background-image: url('https://pstore-eyu104.oss-cn-guangzhou.aliyuncs.com/index/background.gif');" >
 
     <el-row :gutter="20">
 
@@ -48,17 +48,19 @@ export default {
 
       </el-col>
 
-      <el-col :span="12"><div class="grid-content ep-bg-purple" /></el-col>
+      <el-col :span="12"><div class="grid-content ep-bg-purple" />
+        <div style="margin: 10px 10px;">
+        <div><el-text class="mx-1" style="font-size: 40px;color: white;">现在，</el-text></div>
+        <div><el-text class="mx-1" style="font-size: 40px;color: white;">进入商店，</el-text></div>
+        <div><el-text class="mx-1" style="font-size: 40px;color: white;">选购心仪的宠物吧！</el-text></div>
+
+        </div>
+      </el-col>
 
       <el-col :span="6"><div class="grid-content ep-bg-purple" />
         <div style="margin: 15px">
-        <div style="margin: 10px 10px">
-
-          <div><el-text class="mx-1" style="font-size: 35px;color: white;">进入商店，</el-text></div>
-          <div><el-text class="mx-1" style="font-size: 35px;color: white;">选购心仪的宠物吧！</el-text></div>
-
-        </div>
-
+       
+        <div style="height: 30px;"></div>
         <div style="margin: 10px 10px">
 
           <a @click="begin" class="btn" >
@@ -107,7 +109,23 @@ export default {
 
 .btn:hover{
   color: #fff;
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+.btn span::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #fff;
+  transition: width .5s;
+
+}
+
+.btn span:hover::after {
+  width: 100%;
 }
 
 .btn::before{

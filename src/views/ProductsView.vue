@@ -71,7 +71,8 @@ const interItem = (o) => {
             style=" width: 200px;
                     height: 200px;
                     border-radius: 50%;
-                    padding-left: 0px;"
+                    padding-left: 0px;
+                    overflow: hidden;  "
             :src="url[index]"
             :zoom-rate="1.2"
             :preview-src-list="srcList"

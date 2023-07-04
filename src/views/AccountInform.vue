@@ -15,7 +15,7 @@
     <el-descriptions-item label="语言偏好">{{languagePreference}}</el-descriptions-item>
     <el-descriptions-item label="宠物偏好">{{favouriteCategoryId}}</el-descriptions-item>
     <el-descriptions-item label="启用MyList" :span="2">{{listOption}}</el-descriptions-item>
-    <el-descriptions-item label="启用MyBanner" :span="2">{{bannerOption}}</el-descriptions-item>
+    <!-- <el-descriptions-item label="启用MyBanner" :span="2">{{bannerOption}}</el-descriptions-item> -->
 
   </el-descriptions>
     <el-button @click="toEdit">修改个人信息</el-button>
@@ -172,7 +172,7 @@ const toLog = () => {
   border-radius:15px;
   background-clip:padding-box;
   margin:5% auto;
-  height: 80vh;
+  height: 80%;
   width:60%;
   padding: 35px 35px 15px 35px;
   background:#fff;

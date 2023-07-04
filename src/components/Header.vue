@@ -95,6 +95,15 @@ const handleSelect = (key, keyPath) => {
   activeIndex.value = key
   console.log(key, keyPath)
 }
+
+const loginReset = () => {
+  request.get('/account/logout').then((res)=> {
+    console.log(res.data)
+    account.$reset()
+    localStorage.clear()
+  })
+  
+}
 </script>
 
 <template>
